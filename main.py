@@ -1,4 +1,4 @@
-from flask import Flask, request,render_template
+from flask import Flask, request, render_template, redirect, url_for
 app=Flask(__name__)
 
 usuarios=[]
@@ -12,7 +12,7 @@ def crud():
         correo=request.form["correo"]
         usuarios.append({"id": id_contador, "nombre": nombre, "correo": correo})
         id_contador+=1
-        #print(usuarios)
+        print(usuarios)
     eliminar_id=request.args.get("eliminar")
     if eliminar_id:
         for diccionario in usuarios:
@@ -22,7 +22,23 @@ def crud():
 
     return render_template("crud.html", usuarios=usuarios)
 
+#Ruta para editar la información del usuario
+@app.route("/update/<int:id>", methods=["GET", "POST"])
+def update(id):
+    #TODO: capturar y buscar el usuario a editar
+    usuario_a_editar = ""
+    for diccionario in usuarios: #Para cada diccionario dentro de la lista evalue:
+        if diccionario['id']==id: #Si el id convertido a string es igual a id que me pasan por parametro
+            usuario_a_editar="diccionario" #Hemos identificado los datos del usuario a editar
+            break
+    #TODO: actualizar la info del usuario seleccionado
+    if request.method=="POST":
+        usuario_a_editar["nombre"]=request.form.get("nombre")
+        usuario_a_editar["correo"]=request.form.get("correo")
+        return redirect(url_for("crud")) #Redirecciona la aplicación a la ruta de la función crud
 
+    return render_template('editar.html', usuario_a_editar=usuario_a_editar)
+    
 
 
 

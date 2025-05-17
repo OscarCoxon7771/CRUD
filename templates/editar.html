@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <h2 style="color:rgb(48, 48, 48)">
+            Editar Usuario
+        </h2>
+        <form method="POST">
+            <input type="text" placeholder="Edite su nombre" name="nombre" required>
+            <input type="email" placeholder="Edite su correo" name="correo" required>
+            <button>editar</button>
+        </form>
+    </div>    
+</body>
+</html>
