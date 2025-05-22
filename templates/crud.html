@@ -19,15 +19,14 @@
             <button>registrar</button>
         </form>
         <table>
-            <tr><th>ID</th><th>Nombre Usuario</th><th>Correo</th></tr>
+            <tr><th>ID</th><th>Nombre Usuario</th><th>Correo</th><th>Acciones</th></tr>
             {% for persona in usuarios %}
             <tr>
                 <td>{{  persona.id }}</td>
                 <td>{{ persona.nombre }}</td>
                 <td>{{ persona.correo }}</td>
                 <td>
-                <td>
-                    <a href="/?editar={{ persona.id }}">editar</a>
+                    <a href="/update/{{ persona.id }}">editar</a>
                     |
                     <a href="/?eliminar={{ persona.id }}">eliminar</a>
 
